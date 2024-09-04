@@ -1,0 +1,81 @@
+INCLUDE asmlib.inc
+
+
+.data    
+    
+    prompt BYTE "Enter a number", 0
+    sum BYTE "The sum of your numbers is", 0
+    reverse BYTE "Your numbers in reverse order are: ", 0
+
+    num1 WORD ?
+    num2 WORD ?
+    num3 DWORD ?
+    num4 DWORD ?
+                
+.code
+
+main PROC        
+    
+    mov edx, OFFSET prompt ;moving prompt
+    call writeLine ;displays prompt
+    call readInt ;reads input
+    mov num1, ax ;moves input into num1
+    endl ;adds blank line
+
+    call writeLine ;displays prompt
+    call readInt ;reads input
+    mov num2, ax ;moves input into num2
+    endl ;adds blank line
+
+    call writeLine ;displays prompt
+    call readInt ;reads input
+    mov num3, eax ;moves input into num3
+    endl ;adds blank line
+
+    call writeLine ;displays prompt
+    call readInt ;reads input
+    mov num4, eax ;moves input into num4
+    endl ;adds blank line
+
+    mov ax, 0 ;setting ax value as 0. I did this because when I added the numbers before, it added an extra value
+    mov eax, 0 ;setting eax value as 0. I did this because when I added the numbers before, it added an extra value
+
+    add ax, num1 ;adds num 1 to ax
+    add ax, num2 ;adds num 2 to ax
+    add eax, num3 ;adds num 3 to eax
+    add eax, num4 ;adds num 4 to eax
+    mov edx, OFFSET sum ;calls prompt
+    call writeLine ;displays text
+    call writeInt ;displays sum
+    endl ;adds blank line
+    endl;adds blank line
+
+    mov edx, OFFSET reverse ;calls prompt
+    call writeLine ;displays reverse line
+    mov eax, num4 ;moving num 4 into eax
+    call writeInt ;writes num 4
+    mov num4, eax ;moving eax back into num4 so eax value is returned to 0
+    endl ;adds blank line
+
+    mov eax, num3 ;moving num 3 into eax
+    call writeInt ;writes num 3
+    mov num3, eax ;moving eax back into num3 so eax value is returned to 0
+    endl ;adds blank line
+
+    mov ax, num2 ;moving num 2 into ax
+    call writeInt ;writes num 2
+    mov num2, ax ;moving ax back into num2 so ax value is returned to 0
+    endl ;adds blank line
+
+    mov ax, num1 ;moving num 1 into ax
+    call writeInt ;writes num 1
+    mov num1, ax ;moving ax back into num1 so ax value is returned to 0
+    endl ;adds blank line
+
+
+
+
+    exit
+    
+main ENDP 
+END main
